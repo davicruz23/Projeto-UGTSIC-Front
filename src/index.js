@@ -1,17 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from 'react-dom';
+import App from './App'; // Importa o componente principal da aplicação
+import '@fortawesome/fontawesome-free/css/all.min.css'; // Importa o CSS do FontAwesome
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+const rootElement = document.getElementById('root'); // Obtém o elemento root da aplicação no HTML
+
+// Renderiza a aplicação React no elemento root usando ReactDOM.createRoot para modo assíncrono
+ReactDOM.createRoot(rootElement).render(
+    <React.StrictMode> {/* Modo estrito para detectar problemas potenciais na aplicação */}
+        <App /> {/* Renderiza o componente principal da aplicação */}
+    </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

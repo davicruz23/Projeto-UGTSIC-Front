@@ -1,0 +1,160 @@
+/* Estilos para o corpo da página */
+body {
+    font-family: 'Roboto', sans-serif;
+    /* Define a fonte padrão para o corpo da página */
+    background-color: #f0f2f5;
+    /* Cor de fundo */
+    margin: 0;
+    /* Remove margens padrão */
+    padding: 0;
+    /* Remove preenchimento padrão */
+    display: flex;
+    /* Utiliza flexbox para posicionamento */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Centraliza verticalmente */
+    height: 100vh;
+    /* Altura total da viewport */
+}
+
+/* Estilos para o contêiner do formulário */
+.form-container {
+    max-width: 600px;
+    /* Largura máxima do contêiner */
+    width: 100%;
+    /* Largura total */
+    padding: 40px;
+    /* Preenchimento interno */
+    border: 1px solid #e0e0e0;
+    /* Borda sólida */
+    border-radius: 8px;
+    /* Borda arredondada */
+    background-color: #ffffff;
+    /* Cor de fundo */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Sombra */
+}
+
+/* Estilos para o título do formulário */
+.form-container h2 {
+    text-align: center;
+    /* Alinhamento central do texto */
+    margin-bottom: 20px;
+    /* Espaçamento inferior */
+    color: #333333;
+    /* Cor do texto */
+    font-weight: 500;
+    /* Peso da fonte */
+}
+
+/* Estilos para o formulário dentro do contêiner */
+.form-container form {
+    display: flex;
+    /* Utiliza flexbox para layout */
+    flex-direction: column;
+    /* Organiza os elementos em coluna */
+}
+
+/* Estilos para rótulos do formulário */
+.form-container label {
+    margin-bottom: 5px;
+    /* Espaçamento inferior */
+    font-weight: 500;
+    /* Peso da fonte */
+    color: #666666;
+    /* Cor do texto */
+}
+
+/* Estilos para inputs, selects e textareas do formulário */
+.form-container input,
+.form-container select,
+.form-container textarea {
+    margin-bottom: 20px;
+    /* Espaçamento inferior */
+    padding: 12px;
+    /* Preenchimento interno */
+    font-size: 16px;
+    /* Tamanho da fonte */
+    border: 1px solid #e0e0e0;
+    /* Borda sólida */
+    border-radius: 4px;
+    /* Borda arredondada */
+    transition: border-color 0.3s;
+    /* Transição suave para a cor da borda */
+    width: calc(100% - 24px);
+    /* Largura calculada com desconto do preenchimento */
+}
+
+/* Estilos para foco em inputs, selects e textareas */
+.form-container input:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+    border-color: #007bff;
+    /* Cor da borda ao focar */
+    outline: none;
+    /* Remove o contorno padrão */
+}
+
+/* Estilos para o botão do formulário */
+.form-container button {
+    padding: 15px;
+    /* Preenchimento interno */
+    font-size: 16px;
+    /* Tamanho da fonte */
+    color: #ffffff;
+    /* Cor do texto */
+    background-color: #007bff;
+    /* Cor de fundo */
+    border: none;
+    /* Remove a borda */
+    border-radius: 4px;
+    /* Borda arredondada */
+    cursor: pointer;
+    /* Altera o cursor ao passar por cima */
+    transition: background-color 0.3s;
+    /* Transição suave para a cor de fundo */
+    width: 100%;
+    /* Largura total */
+}
+
+/* Estilos para hover no botão do formulário */
+.form-container button:hover {
+    background-color: #0056b3;
+    /* Cor de fundo ao passar o mouse */
+}
+
+/* Estilos para grupos de entrada no formulário */
+.form-container .input-group {
+    position: relative;
+    /* Posição relativa para posicionamento absoluto dos ícones */
+    margin-bottom: 20px;
+    /* Espaçamento inferior */
+}
+
+/* Estilos para ícones dentro dos grupos de entrada */
+.form-container .input-group i {
+    position: absolute;
+    /* Posição absoluta para posicionamento no grupo */
+    right: 15px;
+    /* Distância da borda direita */
+    top: 50%;
+    /* Alinhamento vertical no centro */
+    transform: translateY(-50%);
+    /* Ajuste fino do alinhamento vertical */
+    color: #cccccc;
+    /* Cor do ícone */
+}
+
+/* Estilos para inputs dentro dos grupos de entrada */
+.form-container .input-group input {
+    padding-right: 40px;
+    /* Espaçamento à direita para acomodar ícones */
+}
+
+/* Estilos para selects e textareas dentro dos grupos de entrada */
+.form-container .input-group select,
+.form-container .input-group textarea {
+    padding-right: 40px;
+    /* Espaçamento à direita para acomodar ícones */
+}
