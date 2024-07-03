@@ -13,6 +13,7 @@ const FormularioEnvio = () => {
     const [arquivo, setArquivo] = useState(null);
     const [erroArquivo, setErroArquivo] = useState('');
     const [erroTelefone, setErroTelefone] = useState('');
+    const [erroEmail, setErroEmail] = useState(''); // Estado para controlar o erro específico de email
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -77,11 +78,19 @@ const FormularioEnvio = () => {
             setArquivo(null); // Resetar o estado do arquivo para null
             setErroArquivo('');
             setErroTelefone('');
+            setErroEmail(''); // Limpar o erro específico de email
 
-            // Atualizar a lista de formulários após envio
-            // Implemente uma função para recarregar a lista de formulários exibida na tela, se necessário
+            // Exibir alerta de sucesso e redirecionar
+            window.alert('Formulário enviado com sucesso!');
+            window.location.href = '/'; // Redirecionar para a página inicial
+
         } catch (error) {
-            console.error('Erro ao enviar formulário:', error);
+            if (error.response && error.response.status === 400) {
+                // Exibir mensagem de erro do backend
+                setErroEmail('Email em uso.');
+            } else {
+                console.error('Erro ao enviar formulário:', error);
+            }
         }
     };
 
@@ -108,6 +117,7 @@ const FormularioEnvio = () => {
                     <label>Email:</label>
                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                     <i className="fas fa-envelope"></i>
+                    {erroEmail && <p className="error-message">{erroEmail}</p>} {/* Exibir erro específico de email */}
                 </div>
 
                 <div className="input-group">
