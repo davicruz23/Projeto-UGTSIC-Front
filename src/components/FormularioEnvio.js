@@ -4,6 +4,7 @@ import InputMask from 'react-input-mask';
 import './FormularioEnvio.css';
 
 const FormularioEnvio = () => {
+    // Define os estados para os campos do formulário e as mensagens de erro
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [telefone, setTelefone] = useState('');
@@ -16,6 +17,7 @@ const FormularioEnvio = () => {
     const [erroEmail, setErroEmail] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false); // Estado para controlar o estado de envio
 
+    // Função para lidar com a mudança de arquivo
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         const allowedExtensions = /(\.doc|\.docx|\.pdf)$/i;
@@ -31,7 +33,8 @@ const FormularioEnvio = () => {
             setArquivo(file);
         }
     };
-
+ 
+    // Função para validar o formulário antes do envio
     const validateForm = () => {
         if (!arquivo) {
             setErroArquivo('Arquivo obrigatório no formato .doc, .docx ou .pdf.');
@@ -46,6 +49,7 @@ const FormularioEnvio = () => {
         return true;
     };
 
+    // Função para lidar com o envio do formulário
     const handleSubmit = async (e) => {
         e.preventDefault();
 

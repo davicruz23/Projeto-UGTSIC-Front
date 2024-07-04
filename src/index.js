@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App'; // Importa o componente principal da aplicação
+import App from './components/App'; // Importa o componente principal da aplicação
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Importa o CSS do FontAwesome
 
 const rootElement = document.getElementById('root'); // Obtém o elemento root da aplicação no HTML
