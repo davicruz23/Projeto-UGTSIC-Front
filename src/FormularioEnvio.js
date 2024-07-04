@@ -13,7 +13,8 @@ const FormularioEnvio = () => {
     const [arquivo, setArquivo] = useState(null);
     const [erroArquivo, setErroArquivo] = useState('');
     const [erroTelefone, setErroTelefone] = useState('');
-    const [erroEmail, setErroEmail] = useState(''); // Estado para controlar o erro específico de email
+    const [erroEmail, setErroEmail] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false); // Estado para controlar o estado de envio
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -52,6 +53,8 @@ const FormularioEnvio = () => {
             return;
         }
 
+        setIsSubmitting(true); // Definir estado de envio como verdadeiro
+
         try {
             const formData = new FormData();
             formData.append('nome', nome);
@@ -78,7 +81,7 @@ const FormularioEnvio = () => {
             setArquivo(null); // Resetar o estado do arquivo para null
             setErroArquivo('');
             setErroTelefone('');
-            setErroEmail(''); // Limpar o erro específico de email
+            setErroEmail('');
 
             // Exibir alerta de sucesso e redirecionar
             window.alert('Formulário enviado com sucesso!');
@@ -91,10 +94,11 @@ const FormularioEnvio = () => {
             } else {
                 console.error('Erro ao enviar formulário:', error);
             }
+        } finally {
+            setIsSubmitting(false); // Definir estado de envio como falso
         }
     };
 
-    // Ajustar a validação do telefone para exibir uma mensagem genérica quando inválido
     const handleTelefoneBlur = () => {
         if (telefone.replace(/\D/g, '').length < 10) {
             setErroTelefone('Número inválido.');
@@ -117,7 +121,7 @@ const FormularioEnvio = () => {
                     <label>Email:</label>
                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                     <i className="fas fa-envelope"></i>
-                    {erroEmail && <p className="error-message">{erroEmail}</p>} {/* Exibir erro específico de email */}
+                    {erroEmail && <p className="error-message">{erroEmail}</p>}
                 </div>
 
                 <div className="input-group">
@@ -172,7 +176,9 @@ const FormularioEnvio = () => {
                     {erroArquivo && <p className="error-message">{erroArquivo}</p>}
                 </div>
 
-                <button type="submit">Enviar</button>
+                <button type="submit" disabled={isSubmitting}>
+                    {isSubmitting ? <i className="fas fa-spinner fa-spin"></i> : 'Enviar'}
+                </button>
             </form>
         </div>
     );

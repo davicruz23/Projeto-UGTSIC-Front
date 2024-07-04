@@ -158,3 +158,21 @@ body {
     padding-right: 40px;
     /* Espaçamento à direita para acomodar ícones */
 }
+
+.fa-spinner {
+    margin-right: 8px;
+}
+
+.fa-spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
