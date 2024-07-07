@@ -9,6 +9,12 @@
 2. Instale as dependências:
    npm install ou yarn install
 
+## Telas
+- formulario/enviar: Abre a tela de formulario
+- auth/login: Usuario admin senha admin colocado localmente nas configurações apenas para acesso a lista de formularios
+- formularios/list: apenas o admin pode ter acesso após autenticação (usuario:admin/senha:admin)
+  esse formulario mostra uma tabela com os formularios recebidos além de permitir o download do mesmo.
+
 ## Execução
 - para iniciar a aplicação utilize npm start ou yarn start
 
