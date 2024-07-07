@@ -4,7 +4,6 @@ import InputMask from 'react-input-mask';
 import './FormularioEnvio.css';
 
 const FormularioEnvio = () => {
-    // Define os estados para os campos do formulário e as mensagens de erro
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [telefone, setTelefone] = useState('');
@@ -15,14 +14,14 @@ const FormularioEnvio = () => {
     const [erroArquivo, setErroArquivo] = useState('');
     const [erroTelefone, setErroTelefone] = useState('');
     const [erroEmail, setErroEmail] = useState('');
-    const [isSubmitting, setIsSubmitting] = useState(false); // Estado para controlar o estado de envio
+    const [erroGeral, setErroGeral] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // Função para lidar com a mudança de arquivo
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         const allowedExtensions = /(\.doc|\.docx|\.pdf)$/i;
 
-        if (file && file.size > 1048576) { // 1MB = 1048576 bytes
+        if (file && file.size > 1048576) {
             setErroArquivo('O arquivo deve ter no máximo 1MB.');
             setArquivo(null);
         } else if (file && !allowedExtensions.exec(file.name)) {
@@ -33,8 +32,7 @@ const FormularioEnvio = () => {
             setArquivo(file);
         }
     };
- 
-    // Função para validar o formulário antes do envio
+
     const validateForm = () => {
         if (!arquivo) {
             setErroArquivo('Arquivo obrigatório no formato .doc, .docx ou .pdf.');
@@ -49,7 +47,6 @@ const FormularioEnvio = () => {
         return true;
     };
 
-    // Função para lidar com o envio do formulário
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -57,7 +54,8 @@ const FormularioEnvio = () => {
             return;
         }
 
-        setIsSubmitting(true); // Definir estado de envio como verdadeiro
+        setIsSubmitting(true);
+        setErroGeral(''); // Resetar mensagem de erro geral
 
         try {
             const formData = new FormData();
@@ -69,13 +67,12 @@ const FormularioEnvio = () => {
             formData.append('observacao', observacao);
             formData.append('arquivo', arquivo);
 
-            await axios.post('http://localhost:8080/formulario', formData, {
+            await axios.post('http://localhost:8080/formulario/enviar', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
 
-            // Limpar campos após o envio bem-sucedido
             setNome('');
             setEmail('');
             setTelefone('');
@@ -87,19 +84,18 @@ const FormularioEnvio = () => {
             setErroTelefone('');
             setErroEmail('');
 
-            // Exibir alerta de sucesso e redirecionar
             window.alert('Formulário enviado com sucesso!');
             window.location.href = '/'; // Redirecionar para a página inicial
 
         } catch (error) {
             if (error.response && error.response.status === 400) {
-                // Exibir mensagem de erro do backend
                 setErroEmail('Email em uso.');
             } else {
                 console.error('Erro ao enviar formulário:', error);
+                setErroGeral('Erro ao enviar formulário. Por favor, tente novamente mais tarde.');
             }
         } finally {
-            setIsSubmitting(false); // Definir estado de envio como falso
+            setIsSubmitting(false);
         }
     };
 
@@ -114,6 +110,7 @@ const FormularioEnvio = () => {
     return (
         <div className="form-container">
             <h2>Enviar Formulário</h2>
+            {erroGeral && <p className="error-message">{erroGeral}</p>}
             <form onSubmit={handleSubmit}>
                 <div className="input-group">
                     <label>Nome Completo:</label>
